@@ -19,7 +19,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-
+    private boolean isAdmin;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "org_id")
     private Organization organization;
