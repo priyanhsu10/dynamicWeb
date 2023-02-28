@@ -45,7 +45,7 @@ public class UserService implements IUserService {
     @Override
     public AuthenticationResult login(LoginRequest userDto) {
         User u = userRepository.findByUserNameAndOrgId(userDto.getUserName(), userDto.getOrgId()).orElseThrow(() -> new RuntimeException("User Not Exist"));
-        if (encoder.matches(u.getPassword(), userDto.getPassword())) {
+        if (encoder.matches(userDto.getPassword(), u.getPassword())) {
             UserDto dto = UserDto.builder().isAdmin(u.isAdmin()).id(u.getId()).email(u.getEmail()).username(u.getUsername()).organizationId(u.getOrganization().getId())
                     .build();
             String token = jwtTokenManager.generateToken(dto);

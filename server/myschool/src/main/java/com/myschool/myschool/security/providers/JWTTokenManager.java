@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +27,15 @@ public class JWTTokenManager {
         claim.put("orgId", userDto.getOrganizationId().toString());
         var role = userDto.isAdmin() ? "A" : "U";
         claim.put("ROLE", role);
-        String token = Jwts.builder().addClaims(claim).signWith(SignatureAlgorithm.HS256, secret).setSubject(userDto.getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + jwtExpiryInMilis)).compact();
+        Date now = new Date();
+        Date expiration = new Date(now.getTime() + jwtExpiryInMilis);
+        String token = Jwts.builder()
+                .addClaims(claim)
+                .setIssuedAt(now)
+                .setSubject(userDto.getUsername())
+                .setExpiration(expiration)
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
 
         return token;
     }
@@ -35,8 +43,12 @@ public class JWTTokenManager {
     public Claims validateToken(String token) {
 
         try {
-            Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJwt(token).getBody();
-            Jwts.parser().setSigningKey(secret).parseClaimsJwt(token).getBody();
+
+            Claims claims = Jwts.parser()
+                    .setSigningKey(secret)
+                    .parseClaimsJws(token)
+                    .getBody();
+
             return claims;
         } catch (SignatureException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException ex) {
             throw new BadCredentialsException("INVALID_CREDENTIALS", ex);

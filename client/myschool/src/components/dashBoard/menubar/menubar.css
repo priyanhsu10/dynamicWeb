@@ -1,0 +1,19 @@
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  background-color: rgb(121, 162, 79);
+  padding-top: 0.5rem;
+}
+li {
+  list-style: none;
+  color: whitesmoke;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+}
+.menu ul > li :hover {
+  color: aqua;
+}
+.navbar-text {
+  align-content: end;
+}

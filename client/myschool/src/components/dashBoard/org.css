@@ -1,0 +1,8 @@
+.parent {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 3rem;
+}
+.content {
+  display: inline;
+}

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class LoginRequest {
-    private  Long orgId;
+    private  long orgId;
     private String userName;
     private String password;
 }
