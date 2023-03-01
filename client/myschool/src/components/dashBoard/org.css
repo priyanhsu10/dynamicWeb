@@ -1,7 +1,5 @@
 .parent {
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 3rem;
+  padding-top: 1rem;
 }
 .content {
   display: inline;

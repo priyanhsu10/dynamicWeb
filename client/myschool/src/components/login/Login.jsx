@@ -1,14 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "./login.css";
-const Login = () => {
+import { login } from "../../services/loginservice";
+const Login = ({ onLogin }) => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const input = {
+      orgId: +data.org,
+      userName: data.username,
+      password: data.password,
+    };
+    const result = await login(input);
+    console.log(result);
+    onLogin(result);
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="container login">

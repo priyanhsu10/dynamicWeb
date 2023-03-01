@@ -1,7 +1,14 @@
-import React from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import "./menubar.css";
-export const Menubar = () => {
+import { LoginContext } from "../../../App";
+
+export const Menubar = ({ onLogout }) => {
+  const loginData = useContext(LoginContext);
+
+  const logout = () => {
+    onLogout();
+  };
   return (
     <div>
       <nav>
@@ -32,10 +39,11 @@ export const Menubar = () => {
             </NavLink>
           </li>
           <li className="nav-item"></li>
+          wellcome - {loginData.userDto.username}
           <li>
-            <NavLink to="/pages" className="nav-link active">
+            <a to="/pages" className="nav-link active" onClick={logout}>
               log out
-            </NavLink>
+            </a>
           </li>
         </ul>
       </nav>
