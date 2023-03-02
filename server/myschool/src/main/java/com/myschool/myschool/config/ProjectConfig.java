@@ -9,9 +9,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 public class ProjectConfig  extends WebSecurityConfigurerAdapter {
@@ -26,7 +28,22 @@ private TokenAuthProvider tokenAuthProvider;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterAt(tokenAuthFilter(), BasicAuthenticationFilter.class);
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        config.setAllowCredentials(false);
+
+        http = http
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and();
        http.csrf().disable()
+               .cors().configurationSource((option)->{
+
+                   return config;
+               })
+               .and()
                .authorizeHttpRequests()
                .antMatchers("/api/user/create","/api/user/authenticate","/v3/api-docs/**","/v3/swagger**/**", "/v3/swagger-ui.html", "/v3/swagger-ui/**")
                .permitAll()

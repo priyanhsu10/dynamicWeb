@@ -32,6 +32,7 @@ public class TokenAuthProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
+
         return TokenAuthentication.class.equals(authentication);
     }
 }

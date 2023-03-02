@@ -8,16 +8,35 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 //------org------
+
+const getAllOrgs1 = async () => {
+  const url = `${baseURL}/org`;
+  try {
+    const headers = new Headers({
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+    });
+
+    // const rep = await axios.get(url, config);
+    const res1 = await fetch(url, { method: "GET", headers: headers });
+    const data = await res1.json();
+    console.log(data);
+    return data;
+  } catch (exp) {
+    console.error(exp);
+    alert("fail to login");
+  }
+};
 const getAllOrgs = async () => {
-  const url = `${baseURL}/org"`;
-  return get(url);
+  const url = `${baseURL}/org`;
+  return await get(url);
 };
 const createOrg = async (data) => {
   const url = `${baseURL}/org"`;
   return post(url, data);
 };
 const udpateOrg = async (id, data) => {
-  const url = `${baseURL}/org/${id}"`;
+  const url = `${baseURL}/org/${id}`;
   return put(url, data);
 };
 
@@ -31,7 +50,7 @@ const errorHandler = async (fn) => {
 //------------event
 const getEvets = async () => {
   const orgId = getLoginData().organizationId;
-  const url = `${baseURL}/events/${orgId}"`;
+  const url = `${baseURL}/events/${orgId}`;
   return get(url);
 };
 const createEvent = async (data) => {
@@ -47,17 +66,17 @@ const updateEvent = async (id, data) => {
 //--------------Announcement
 const getAnnouncenent = async () => {
   const orgId = getLoginData().organizationId;
-  const url = `${baseURL}/announcement/${orgId}"`;
+  const url = `${baseURL}/announcement/${orgId}`;
   return get(url);
 };
 const createAnnouncenent = async (data) => {
   data.organizationId = getLoginData().organizationId;
-  const url = `${baseURL}/announcement"`;
+  const url = `${baseURL}/announcement`;
   return post(url, data);
 };
 const updateAnnouncenent = async (id, data) => {
   const orgId = getLoginData().organizationId;
-  const url = `${baseURL}/announcement/${orgId}/${id}"`;
+  const url = `${baseURL}/announcement/${orgId}/${id}`;
   return put(url, data);
 };
 
@@ -74,7 +93,7 @@ const createPage = async (data) => {
 };
 const updatePage = async (id, data) => {
   const orgId = getLoginData().organizationId;
-  const url = `${baseURL}/pages/${orgId}/${id}"`;
+  const url = `${baseURL}/pages/${orgId}/${id}`;
   return put(url, data);
 };
 
@@ -112,6 +131,7 @@ export {
   getPages,
   createPage,
   updatePage,
+  getAllOrgs1,
 };
 
 const getLoginData = () => {

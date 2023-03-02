@@ -52,7 +52,8 @@ public class OrganisationService implements IOrganisationService {
 
     @Override
     public List<OrganizationDto> getAll() {
-        return iOrganizationRepository.findAll().stream().map(x->new OrganizationDto(x.getId(),x.getName(),x.getLogo(),x.getAddress())).collect(Collectors.toList());
+        return iOrganizationRepository.findAll().stream()
+                .map(x->new OrganizationDto(x.getId(),x.getName(),x.getLogo(),x.getAddress())).collect(Collectors.toList());
     }
 }
 
