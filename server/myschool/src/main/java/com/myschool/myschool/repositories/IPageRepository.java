@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface IPageRepository extends JpaRepository<Page, Long> {
-    @Query("Select u From Event u where u.organization.id=:orgId")
-    List<Page> getAllAnnouncementByOrgId(long orgId);
+    @Query("Select u From Page u where u.organization.id=:orgId")
+    List<Page> getAllPageByOrgId(long orgId);
 }

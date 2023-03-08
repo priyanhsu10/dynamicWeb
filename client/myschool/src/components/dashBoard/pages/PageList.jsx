@@ -1,36 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getPages } from "../../../services/dashboardService";
 import List from "../../common/List";
+import Viewer from "../../common/Viewer";
 
 function PageList() {
+  const navigate = useNavigate();
+
+  const [orgsList, setOrgList] = useState([]);
+  const [page, setPage] = useState();
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getPages();
+      setOrgList(data);
+    }
+    fetchData();
+  }, []);
   const header = [
     {
       name: "id",
       selector: (row) => row.id,
     },
     {
-      name: "Name",
-      selector: (row) => row.name,
+      name: "Title",
+      selector: (row) => row.title,
+    },
+    {
+      name: "content",
+      selector: (row) => row.content,
+      omit: true,
+    },
+    {
+      name: "organizationId",
+      selector: (row) => row.organizationId,
+      omit: true,
+    },
+    {
+      name: "organizationId",
+      selector: (row) => row.organizationId,
+      omit: true,
+    },
+    {
+      cell: (row) => (
+        <button className="btn btn-secondary" onClick={() => onview(row)}>
+          view
+        </button>
+      ),
+      ignoreRowClick: true,
+      allowOverflow: true,
+      button: true,
     },
   ];
-  const data = [
-    { id: 1, name: "abc" },
-    { id: 2, name: "priyanshu" },
-    { id: 3, name: "krunal" },
-    { id: 4, name: "Anshu" },
-    { id: 5, name: "abc" },
-    { id: 6, name: "priyanshu" },
-    { id: 7, name: "krunal" },
-    { id: 8, name: "Anshu" },
-    { id: 9, name: "abc" },
-    { id: 10, name: "priyanshu" },
-    { id: 11, name: "krunal" },
-    { id: 12, name: "Anshu" },
-    { id: 13, name: "abc" },
-    { id: 14, name: "priyanshu" },
-    { id: 15, name: "krunal" },
-    { id: 16, name: "Anshu" },
-  ];
-  return <List header={header} data={data}></List>;
+
+  const onEdit = (row) => {
+    navigate("/pages/create", { state: { ...row } });
+  };
+  const onview = (row) => {
+    navigate("view", { state: row.content });
+    setPage((pre) => (pre = row.content));
+  };
+  const onCreate = () => {
+    navigate("/pages/create");
+  };
+  return (
+    <>
+      <List
+        header={header}
+        data={orgsList}
+        onEdit={onEdit}
+        onCreate={onCreate}
+        search="title"
+      ></List>
+    </>
+  );
 }
 
 export default PageList;

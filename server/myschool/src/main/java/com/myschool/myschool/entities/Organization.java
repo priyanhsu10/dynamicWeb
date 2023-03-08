@@ -20,7 +20,5 @@ public class Organization {
     private String name;
     private String logo;
     private String address;
-    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
-    private List<Announcement> announcementList = new ArrayList<>();
 
 }

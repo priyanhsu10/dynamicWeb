@@ -1,6 +1,46 @@
-.parent {
-  padding-top: 1rem;
+.pading {
+  padding-top: 2rem;
 }
 .content {
   display: inline;
+}
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+.search {
+  margin-right: 2rem;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.form-label {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.container {
+  padding: 1rem;
+}
+
+.editor {
+  border: 1px solid #ddd;
+  padding: 10px;
+  height: 200px;
+  overflow-y: scroll;
+}
+/* .DraftEditor-editorContainer{
+  min-height: ;
+} */
+.test {
+  border: solid red;
+}
+.test > .DraftEditor-editorContainer {
+  background-color: red;
+}
+
+.ql-editor {
+  min-height: 300px;
 }

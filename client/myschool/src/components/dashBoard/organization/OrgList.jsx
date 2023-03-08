@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import List from "../../common/List";
 import { getAllOrgs } from "../../../services/dashboardService";
+import { useNavigate } from "react-router-dom";
 
 function OrgList() {
+  const navigate = useNavigate();
+
   const [orgsList, setOrgList] = useState([]);
   useEffect(() => {
     async function fetchData() {
@@ -26,7 +29,21 @@ function OrgList() {
     },
   ];
 
-  return <List header={header} data={orgsList}></List>;
+  const onEdit = (row) => {
+    navigate("/organization/create", { state: { ...row } });
+  };
+  const onCreate = () => {
+    navigate("/organization/create");
+  };
+  return (
+    <List
+      header={header}
+      data={orgsList}
+      onEdit={onEdit}
+      onCreate={onCreate}
+      search="name"
+    ></List>
+  );
 }
 
 export default OrgList;

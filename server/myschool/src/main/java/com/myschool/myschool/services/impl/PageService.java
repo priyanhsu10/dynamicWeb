@@ -56,7 +56,7 @@ public class PageService implements IPageService {
 
     @Override
     public List<PageDto> getAll(Long orgId) {
-        return pageRepository.getAllAnnouncementByOrgId(orgId).stream()
+        return pageRepository.getAllPageByOrgId(orgId).stream()
                 .map(x->{
                     var entity=   new PageDto();
                     entity.setId(x.getId());

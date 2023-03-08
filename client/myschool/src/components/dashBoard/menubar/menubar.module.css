@@ -1,17 +1,17 @@
 .menu {
   display: flex;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 2rem;
   background-color: rgb(121, 162, 79);
-  padding-top: 0.5rem;
+  padding: 1rem;
 }
-li {
+.navitem {
   list-style: none;
   color: whitesmoke;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   cursor: pointer;
 }
-.menu ul > li :hover {
+.menu .navitem:hover {
   color: aqua;
 }
 .navbar-text {

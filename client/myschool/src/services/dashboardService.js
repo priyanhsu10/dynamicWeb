@@ -32,7 +32,7 @@ const getAllOrgs = async () => {
   return await get(url);
 };
 const createOrg = async (data) => {
-  const url = `${baseURL}/org"`;
+  const url = `${baseURL}/org`;
   return post(url, data);
 };
 const udpateOrg = async (id, data) => {
@@ -55,12 +55,12 @@ const getEvets = async () => {
 };
 const createEvent = async (data) => {
   data.organizationId = getLoginData().organizationId;
-  const url = `${baseURL}/events"`;
+  const url = `${baseURL}/events`;
   return post(url, data);
 };
 const updateEvent = async (id, data) => {
   const orgId = getLoginData().organizationId;
-  const url = `${baseURL}/events/${orgId}/${id}"`;
+  const url = `${baseURL}/events/${orgId}/${id}`;
   return put(url, data);
 };
 //--------------Announcement
@@ -83,12 +83,12 @@ const updateAnnouncenent = async (id, data) => {
 //-----------pages
 const getPages = async () => {
   const orgId = getLoginData().organizationId;
-  const url = `${baseURL}/pages/${orgId}"`;
+  const url = `${baseURL}/pages/${orgId}`;
   return get(url);
 };
 const createPage = async (data) => {
   data.organizationId = getLoginData().organizationId;
-  const url = `${baseURL}/pages"`;
+  const url = `${baseURL}/pages`;
   return post(url, data);
 };
 const updatePage = async (id, data) => {

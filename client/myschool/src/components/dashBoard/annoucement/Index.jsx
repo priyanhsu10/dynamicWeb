@@ -7,7 +7,6 @@ const Annoucement = () => {
       <section className="left">
         <h1>Annoucement</h1>
       </section>
-      <section></section>
       <section>
         <AnnoucementList />
       </section>

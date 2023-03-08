@@ -1,35 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getEvets } from "../../../services/dashboardService";
 import List from "../../common/List";
 
 export const EventList = () => {
+  const navigate = useNavigate();
+
+  const [eventList, setEventList] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getEvets();
+      setEventList(data);
+    }
+    fetchData();
+  }, []);
   const header = [
     {
       name: "id",
       selector: (row) => row.id,
     },
     {
-      name: "Name",
-      selector: (row) => row.name,
+      name: "Title",
+      selector: (row) => row.title,
+    },
+    {
+      name: "Description",
+      selector: (row) => row.description,
+    },
+    {
+      name: "Start Date",
+      selector: (row) => row.startDate,
+      format: (row, index) => new Date(row.startDate).toLocaleDateString(),
+    },
+
+    {
+      name: "End Date",
+      selector: (row) => row.endDate,
+      format: (row, index) => new Date(row.startDate).toLocaleDateString(),
+    },
+    {
+      name: "organizationId",
+      selector: (row) => row.organizationId,
+      omit: true,
     },
   ];
-  const data = [
-    { id: 1, name: "abc" },
-    { id: 2, name: "priyanshu" },
-    { id: 3, name: "krunal" },
-    { id: 4, name: "Anshu" },
-    { id: 5, name: "abc" },
-    { id: 6, name: "priyanshu" },
-    { id: 7, name: "krunal" },
-    { id: 8, name: "Anshu" },
-    { id: 9, name: "abc" },
-    { id: 10, name: "priyanshu" },
-    { id: 11, name: "krunal" },
-    { id: 12, name: "Anshu" },
-    { id: 13, name: "abc" },
-    { id: 14, name: "priyanshu" },
-    { id: 15, name: "krunal" },
-    { id: 16, name: "Anshu" },
-  ];
 
-  return <List title="Event list" header={header} data={data}></List>;
+  const onEdit = (row) => {
+    navigate("/events/create", { state: { ...row } });
+  };
+  const onCreate = () => {
+    navigate("/events/create");
+  };
+  return (
+    <List
+      header={header}
+      data={eventList}
+      onEdit={onEdit}
+      onCreate={onCreate}
+      search="title"
+    ></List>
+  );
 };

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface IEventRepository extends JpaRepository<Event, Long> {
     @Query("Select u From Event u where u.organization.id=:orgId")
-    List<Announcement> getAllAnnouncementByOrgId(long orgId);
+    List<Event> getAllAnnouncementByOrgId(long orgId);
 }

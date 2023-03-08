@@ -9,17 +9,7 @@
   border-radius: 10px;
   box-shadow: 5px 5px 10px 10px;
 }
-.left {
-  text-align: left;
-  padding-left: 4rem;
-}
-.right {
-  text-align: right;
-  padding-left: 4rem;
-}
-.btn-secondary {
-  width: 10rem;
-}
+
 .invalid {
   color: red;
 }

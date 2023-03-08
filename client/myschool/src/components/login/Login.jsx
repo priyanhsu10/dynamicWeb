@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import "./login.css";
+import cssstyle from "./login.module.css";
 import { login } from "../../services/loginservice";
 const Login = ({ onLogin }) => {
   const {
@@ -21,7 +21,7 @@ const Login = ({ onLogin }) => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="container login">
+      <div className={`container ${cssstyle.login}`}>
         {/* register your input into the hook by invoking the "register" function */}
         <div>
           <h1 className="left">Login to school</h1>

@@ -12,14 +12,16 @@ import CreateOrg from "./organization/create/CreateOrg";
 import CreateEvent from "./events/create/CreateEvent";
 import { CreateAnnouncement } from "./annoucement/create/CreateAnnouncement";
 import CreatePage from "./pages/create/CreatePage";
+import Viewer from "../common/Viewer";
+import PageViewer from "./pages/PageViewer";
 export const DashBoard = ({ onLogout }) => {
   return (
     <>
       <div className="menu">
         <Menubar onLogout={onLogout} />
       </div>
-      <div className="parent container">
-        <div className="data">
+      <div className="list">
+        <div>
           <Routes>
             <Route path="/organization">
               <Route index element={<Organization />}></Route>
@@ -37,6 +39,7 @@ export const DashBoard = ({ onLogout }) => {
             <Route path="/pages">
               <Route index element={<Pages />}></Route>
               <Route path="create" element={<CreatePage />}></Route>
+              <Route path="view" element={<PageViewer />}></Route>
             </Route>
             <Route path="/users" element={<User />}></Route>
           </Routes>

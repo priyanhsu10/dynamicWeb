@@ -1,16 +1,15 @@
 import React from "react";
+import { TextE2 } from "../../common/TextE2";
 import PageLIst from "./PageList";
 import { Toolbar } from "./toolbar/Toolbar";
 
 export const Pages = () => {
   return (
-    <div className="list">
-      <section className="left">
+    <div>
+      <section>
         <h1>Pages</h1>
       </section>
-      <section>
-        <Toolbar />
-      </section>
+      {/* <TextE2 /> */}
       <section>
         <PageLIst />
       </section>

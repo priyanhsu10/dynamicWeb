@@ -16,6 +16,8 @@ public class Page {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String title;
+
+    @Column(columnDefinition = "varchar")
     private String content;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "org_id")
