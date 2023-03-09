@@ -97,13 +97,29 @@ const updatePage = async (id, data) => {
   return put(url, data);
 };
 
+//-----------quick links
+const getLinks = async () => {
+  const orgId = getLoginData().organizationId;
+  const url = `${baseURL}/quicklinks/${orgId}`;
+  return get(url);
+};
+const createLink = async (data) => {
+  data.organizationId = getLoginData().organizationId;
+  const url = `${baseURL}/quicklinks`;
+  return post(url, data);
+};
+const updateLink = async (id, data) => {
+  const orgId = getLoginData().organizationId;
+  const url = `${baseURL}/quicklinks/${orgId}/${id}`;
+  return put(url, data);
+};
+
 function put(url, data) {
   return errorHandler(async () => {
     const res = await axios.put(url, data);
     return res.data;
   });
 }
-
 function get(url) {
   return errorHandler(async () => {
     const res = await axios.get(url);
@@ -132,6 +148,9 @@ export {
   createPage,
   updatePage,
   getAllOrgs1,
+  createLink,
+  updateLink,
+  getLinks,
 };
 
 const getLoginData = () => {

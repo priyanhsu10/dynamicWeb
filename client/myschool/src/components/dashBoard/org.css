@@ -67,3 +67,8 @@ body {
   border-style: inset;
   transform: rotate3d();
 }
+.link {
+  text-decoration: none;
+  color: #315545;
+  cursor: pointer;
+}

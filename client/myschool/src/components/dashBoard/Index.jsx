@@ -14,6 +14,7 @@ import { CreateAnnouncement } from "./annoucement/create/CreateAnnouncement";
 import CreatePage from "./pages/create/CreatePage";
 import Viewer from "../common/Viewer";
 import PageViewer from "./pages/PageViewer";
+import QuickLinks from "./quicklinks";
 export const DashBoard = ({ onLogout }) => {
   return (
     <>
@@ -34,6 +35,10 @@ export const DashBoard = ({ onLogout }) => {
             </Route>
             <Route path="/annoucements">
               <Route index element={<Annoucement />}></Route>
+              <Route path="create" element={<CreateAnnouncement />}></Route>
+            </Route>
+            <Route path="/quicklinks">
+              <Route index element={<QuickLinks />}></Route>
               <Route path="create" element={<CreateAnnouncement />}></Route>
             </Route>
             <Route path="/pages">
