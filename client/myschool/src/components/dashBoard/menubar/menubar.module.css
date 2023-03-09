@@ -10,7 +10,8 @@
   color: whitesmoke;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   cursor: pointer;
-  transition: 300;
+  transition: 0.5s;
+  transition-timing-function: ease-out;
 }
 .menu .navitem:hover {
   color: rgb(202, 222, 19);
