@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-
+import styled from "styled-components";
+import cssstyle from "./list.module.css";
 const List = (prop) => {
   const [filterText, setFilterText] = useState("");
   const onCreate = () => {
@@ -14,7 +15,7 @@ const List = (prop) => {
   const actions = {
     cell: (row) => (
       <button className="btn btn-secondary" onClick={() => onEdit(row)}>
-        Edit
+        <i className="fa-solid fa-pen-to-square"></i>
       </button>
     ),
     ignoreRowClick: true,
@@ -27,15 +28,16 @@ const List = (prop) => {
   data = [...data.filter((x) => x[prop.search].indexOf(filterText) !== -1)];
   return (
     <div>
-      <div className="toolbar">
+      <div className={cssstyle.toolbar}>
         <input
           type="text"
           placeholder="search"
-          className="form-control search"
+          className={`form-control ${cssstyle.search}`}
           onChange={(e) => setFilterText(e.target.value)}
         />
-        <button className="btn btn-secondary" onClick={onCreate}>
-          add +
+
+        <button className="btn btn-secondary add" onClick={onCreate}>
+          <i className="fa-solid fa-plus  fa-xl"></i>
         </button>
       </div>
       <div>

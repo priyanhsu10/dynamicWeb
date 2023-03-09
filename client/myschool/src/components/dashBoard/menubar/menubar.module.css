@@ -2,7 +2,7 @@
   display: flex;
   justify-content: flex-start;
   gap: 2rem;
-  background-color: rgb(121, 162, 79);
+  background-color: rgb(60, 121, 130);
   padding: 1rem;
 }
 .navitem {
@@ -10,9 +10,11 @@
   color: whitesmoke;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   cursor: pointer;
+  transition: 300;
 }
 .menu .navitem:hover {
-  color: aqua;
+  color: rgb(202, 222, 19);
+  font-weight: bold;
 }
 .navbar-text {
   align-content: end;

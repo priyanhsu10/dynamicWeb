@@ -43,7 +43,7 @@ function PageList() {
     {
       cell: (row) => (
         <button className="btn btn-secondary" onClick={() => onview(row)}>
-          view
+          <i class="fa-solid fa-eye"></i>
         </button>
       ),
       ignoreRowClick: true,

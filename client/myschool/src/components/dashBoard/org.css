@@ -21,6 +21,11 @@
   font-weight: bold;
   text-transform: capitalize;
 }
+.form-control {
+  background: transparent;
+  border-style: inset;
+  border-color: #842029;
+}
 .container {
   padding: 1rem;
 }
@@ -43,4 +48,22 @@
 
 .ql-editor {
   min-height: 300px;
+}
+
+body {
+  background-color: rgb(186, 212, 196);
+  color: #0a0a09;
+}
+.primary {
+  background-color: transparent;
+  color: #0a0a09;
+  border-radius: 5px;
+  border-style: inset;
+  transition: background-color 2s;
+}
+.primary:hover {
+  background-color: #315545;
+  color: #fff;
+  border-style: inset;
+  transform: rotate3d();
 }

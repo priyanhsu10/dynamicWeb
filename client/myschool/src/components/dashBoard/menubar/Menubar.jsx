@@ -15,34 +15,48 @@ export const Menubar = ({ onLogout }) => {
         <ul className={cssstyle.menu}>
           <li className={cssstyle.navitem}>
             <NavLink to="/" className="nav-link active">
-              <span className="alert alert-danger">My School</span>
+              <i className="fa-solid fa-school fa-lg"> </i>
             </NavLink>
           </li>
           <li className={cssstyle.navitem}>
             <NavLink to="/organization" className="nav-link active">
-              Organization
+              <i className="fa-solid "> Organization</i>
             </NavLink>
           </li>
           <li className={cssstyle.navitem}>
             <NavLink to="/events" className="nav-link active">
-              Events
+              <i className="fa-solid "> Events</i>
             </NavLink>
           </li>
           <li className={cssstyle.navitem}>
             <NavLink to="/annoucements" className="nav-link active">
-              Annoucements
+              <i className="fa-solid "> Annoucements</i>
             </NavLink>
           </li>
           <li className={cssstyle.navitem}>
             <NavLink to="/pages" className="nav-link active">
-              pages
+              <i className="fa-solid "> pages</i>
+            </NavLink>
+          </li>
+          <li className={cssstyle.navitem}>
+            <NavLink to="/quicklinks" className="nav-link active">
+              <i className="fa-solid "> Quick links</i>
+            </NavLink>
+          </li>
+          <li className={cssstyle.navitem}>
+            <NavLink to="/menu" className="nav-link active">
+              <i className="fa-solid "> Menu</i>
+            </NavLink>
+          </li>
+          <li className={cssstyle.navitem}>
+            <NavLink to="/gallary" className="nav-link active">
+              <i className="fa-solid "> Gallary</i>
             </NavLink>
           </li>
           <li className={cssstyle.navitem}></li>
-          wellcome - {loginData.userDto.username}
-          <li>
-            <a to="/pages" className={cssstyle.navitem} onClick={logout}>
-              log out
+          <li className="nav-link active">
+            <a className={cssstyle.navitem} onClick={logout}>
+              <i className="fa-sharp fa-solid fa-power-off fa-xl"></i>{" "}
             </a>
           </li>
         </ul>

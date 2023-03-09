@@ -135,8 +135,8 @@ const FormRenderer = ({ controls, onSave, onEdit, data, entity }) => {
             >
               cancel
             </button>
-            <button type="submit" className=" btn btn-primary">
-              {title}
+            <button type="submit" className="primary">
+              {title} <i class="fa-solid fa-wrench"></i>
             </button>
           </div>
         </div>
