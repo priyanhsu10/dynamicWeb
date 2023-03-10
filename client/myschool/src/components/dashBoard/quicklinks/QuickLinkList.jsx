@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPages } from "../../../services/dashboardService";
+import { getLinks } from "../../../services/dashboardService";
 import List from "../../common/List";
 
 const QuickLinkList = () => {
   const navigate = useNavigate();
 
-  const [orgsList, setOrgList] = useState([]);
-  const [page, setPage] = useState();
+  const [linkList, setLinkList] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      const data = await getPages();
-      setOrgList(data);
+      const data = await getLinks();
+      setLinkList(data);
     }
     fetchData();
   }, []);
@@ -25,9 +24,10 @@ const QuickLinkList = () => {
       selector: (row) => row.title,
     },
     {
+      name: "Link",
       cell: (row) => (
-        <a className="link" target="_blank" href={row.title}>
-          {row.title}
+        <a className="link" target="_blank" href={row.link} rel="noreferrer">
+          {row.title} <i class="fa-solid fa-link"></i>
         </a>
       ),
       ignoreRowClick: true,
@@ -42,20 +42,17 @@ const QuickLinkList = () => {
   ];
 
   const onEdit = (row) => {
-    navigate("/pages/create", { state: { ...row } });
+    navigate("/quicklinks/create", { state: { ...row } });
   };
-  const onview = (row) => {
-    navigate("view", { state: row.content });
-    setPage((pre) => (pre = row.content));
-  };
+
   const onCreate = () => {
-    navigate("/pages/create");
+    navigate("/quicklinks/create");
   };
   return (
     <>
       <List
         header={header}
-        data={orgsList}
+        data={linkList}
         onEdit={onEdit}
         onCreate={onCreate}
         search="title"

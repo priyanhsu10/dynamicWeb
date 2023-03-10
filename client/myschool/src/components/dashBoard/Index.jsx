@@ -15,6 +15,7 @@ import CreatePage from "./pages/create/CreatePage";
 import Viewer from "../common/Viewer";
 import PageViewer from "./pages/PageViewer";
 import QuickLinks from "./quicklinks";
+import SaveLink from "./quicklinks/SaveLink";
 export const DashBoard = ({ onLogout }) => {
   return (
     <>
@@ -39,7 +40,7 @@ export const DashBoard = ({ onLogout }) => {
             </Route>
             <Route path="/quicklinks">
               <Route index element={<QuickLinks />}></Route>
-              <Route path="create" element={<CreateAnnouncement />}></Route>
+              <Route path="create" element={<SaveLink />}></Route>
             </Route>
             <Route path="/pages">
               <Route index element={<Pages />}></Route>
