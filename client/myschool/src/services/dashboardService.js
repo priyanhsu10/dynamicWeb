@@ -113,6 +113,22 @@ const updateLink = async (id, data) => {
   const url = `${baseURL}/quicklinks/${orgId}/${id}`;
   return put(url, data);
 };
+// ----------------menu
+const getMenu = async () => {
+  const orgId = getLoginData().organizationId;
+  const url = `${baseURL}/menu/${orgId}`;
+  return get(url);
+};
+const createMenu = async (data) => {
+  data.organizationId = getLoginData().organizationId;
+  const url = `${baseURL}/menu`;
+  return post(url, data);
+};
+const updateMenu = async (id, data) => {
+  const orgId = getLoginData().organizationId;
+  const url = `${baseURL}/menu/${orgId}/${id}`;
+  return put(url, data);
+};
 
 function put(url, data) {
   return errorHandler(async () => {
@@ -151,6 +167,9 @@ export {
   createLink,
   updateLink,
   getLinks,
+  getMenu,
+  createMenu,
+  updateMenu,
 };
 
 const getLoginData = () => {

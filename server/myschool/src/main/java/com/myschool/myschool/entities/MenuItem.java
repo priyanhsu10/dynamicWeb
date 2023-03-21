@@ -19,20 +19,22 @@ public class MenuItem {
     private Long id;
     private String title;
     private String translateKey;
-    private String DescriptionId;
+    private String Description;
+    private boolean isRoot;
+    private boolean isActive;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_id")
     private MenuItem parent;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<MenuItem> menuItemList = new ArrayList<>();
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "page_id")
     private Page page;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "link_id")
+    private QuickLink link;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "menu_Id")
-    private Menu menu;
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "org_id")
     private Organization organization;
 }

@@ -16,6 +16,8 @@ import Viewer from "../common/Viewer";
 import PageViewer from "./pages/PageViewer";
 import QuickLinks from "./quicklinks";
 import SaveLink from "./quicklinks/SaveLink";
+import { MenuPage } from "./menu/Index";
+import CreateMenu from "./menu/CreateMenu";
 export const DashBoard = ({ onLogout }) => {
   return (
     <>
@@ -46,6 +48,10 @@ export const DashBoard = ({ onLogout }) => {
               <Route index element={<Pages />}></Route>
               <Route path="create" element={<CreatePage />}></Route>
               <Route path="view" element={<PageViewer />}></Route>
+            </Route>
+            <Route path="/menu">
+              <Route index element={<MenuPage />}></Route>
+              <Route path="create" element={<CreateMenu />}></Route>
             </Route>
             <Route path="/users" element={<User />}></Route>
           </Routes>

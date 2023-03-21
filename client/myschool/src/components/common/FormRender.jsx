@@ -2,6 +2,7 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Select from "./Select";
 import { TextE2 } from "./TextE2";
 const toastoptions = {
   position: "top-right",
@@ -34,13 +35,16 @@ const FormRenderer = ({ controls, onSave, onEdit, data, entity }) => {
   } = useForm();
   console.log("err:", errors);
   const save = async (formData) => {
+    let result = false;
     if (title === "Create") {
-      await onSave(formData);
+      result = await onSave(formData);
     } else {
-      await onEdit(data.id, formData);
+      result = await onEdit(data.id, formData);
     }
-    toast.success(`Data ${title} successfully`, toastoptions);
-    navigate(-1);
+    if (result) {
+      toast.success(`Data ${title} successfully`, toastoptions);
+      navigate(-1);
+    }
   };
   const setDate = (datealue) => {
     if (!datealue) {
@@ -79,6 +83,14 @@ const FormRenderer = ({ controls, onSave, onEdit, data, entity }) => {
                       className="form-control"
                     />
                   )}
+                  {c.type === "check" && (
+                    <input
+                      defaultValue={c.data}
+                      {...register(`${c.name}`, c.validations)}
+                      type="checkbox"
+                      className="form-check-input"
+                    />
+                  )}
                   {c.type === "textarea" && (
                     <textarea
                       defaultValue={c.data}
@@ -97,6 +109,7 @@ const FormRenderer = ({ controls, onSave, onEdit, data, entity }) => {
                       className="form-control"
                     />
                   )}
+
                   {c.type === "content" && (
                     <Controller
                       name={c.name}
@@ -104,6 +117,28 @@ const FormRenderer = ({ controls, onSave, onEdit, data, entity }) => {
                       control={control}
                       render={({ field }) => <TextE2 {...field} />}
                     />
+                  )}
+                  {c.type === "select" && (
+                    <select
+                      defaultValue={c.data}
+                      {...register(`${c.name}`, c.validations)}
+                      type="text"
+                      className="form-select"
+                    >
+                      {c.displayData &&
+                        c.displayData.map((x) => (
+                          <option key={x.value} value={x.value}>
+                            {x.text}
+                          </option>
+                        ))}
+                    </select>
+                    // <Controller
+                    //   name={c.name}
+                    //   defaultValue={c.data}
+                    //   control={control}
+                    //   render={({ field }) => (
+                    //     <Select {...field} dispalyData={c.displayData} />
+                    //   )}
                     // <input
                     //   defaultValue={c.data}
                     //   {...register(`${c.name}`)}
@@ -136,7 +171,7 @@ const FormRenderer = ({ controls, onSave, onEdit, data, entity }) => {
               cancel
             </button>
             <button type="submit" className="primary">
-              {title} <i class="fa-solid fa-wrench"></i>
+              {title} <i className="fa-solid fa-wrench"></i>
             </button>
           </div>
         </div>
