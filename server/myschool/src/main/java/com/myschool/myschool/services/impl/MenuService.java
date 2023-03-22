@@ -30,14 +30,13 @@ public class MenuService implements IMenuService {
     @Override
     public void create(CreateMenuDto createMenuDto) {
           var menuItem= new MenuItem();
-          menuItem.setRoot(createMenuDto.isRoot());
+          menuItem.setRoot(createMenuDto.getIsroot());
           menuItem.setTitle(createMenuDto.getTitle());
           menuItem.setActive(true);
           menuItem.setDescription(createMenuDto.getDescription());
           menuItem.setOrganization(organizationRepository.getReferenceById(createMenuDto.getOrganizationId()));
-        if (createMenuDto.isRoot()) {
+        if(!createMenuDto.getIsroot()) {
             menuItem.setParent(menuItemRepository.getReferenceById(createMenuDto.getParentId()));
-        } else {
             if(createMenuDto.getPageId()>0 ){
                 menuItem.setPage(pageRepository.getReferenceById(createMenuDto.getPageId()));
             }else if(createMenuDto.getLinkId()>0){
