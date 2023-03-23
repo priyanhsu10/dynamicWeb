@@ -41,7 +41,7 @@ const FormRenderer = ({ controls, onSave, onEdit, data, entity }) => {
     } else {
       result = await onEdit(data.id, formData);
     }
-    if (result) {
+    if (result === "") {
       toast.success(`Data ${title} successfully`, toastoptions);
       navigate(-1);
     }

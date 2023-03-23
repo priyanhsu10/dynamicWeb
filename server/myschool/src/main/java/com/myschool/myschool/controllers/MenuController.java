@@ -30,7 +30,7 @@ public class MenuController {
         menuService.create(createMenuDto);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
-    @PostMapping("/{orgId}/{id}")
+    @PutMapping("/{orgId}/{id}")
     public ResponseEntity update(@PathVariable long orgId, @PathVariable long id, @RequestBody UpdateMenuDto updateMenuDto) {
         updateMenuDto.setOrganizationId(orgId);
         updateMenuDto.setId(id);

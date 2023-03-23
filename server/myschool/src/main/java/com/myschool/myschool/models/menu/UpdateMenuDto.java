@@ -17,6 +17,6 @@ public class UpdateMenuDto {
         private boolean isRoot; //if menu is root a and don't have child then page id ir quick link id applied
     private Long PageId;
     private Long ParentId; //if not root then parent id required
-    private long linkId;
+    private Long linkId;
     private Long organizationId;
 }
